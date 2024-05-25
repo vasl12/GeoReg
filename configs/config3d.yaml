@@ -1,0 +1,33 @@
+# Inference configuration file
+dataset: "oasis3d"  # brain, brain2d, nlst, mnist, rafd, oasis3d, oasis2d
+same_expression: True
+intersubject: True
+with_affine: False
+with_deform: False
+batch_size: 1
+num_workers: 4
+att_nhead: 1
+inh_coord_interp_type: "bilinear"
+inh_feat_interp_type: "mha"
+inh_refinement: True
+global_bottleneck: True
+channels: [16, 32, 32, 64, 64, 128]
+pool_sizes: 2  # tuple treats each layer differently (fine -> coarse)
+k_size_inh: [2, 3, 3, 5, 5]  # tuple treats each layer differently (fine -> coarse)
+k_size_parent: [2, 3, 3, 5, 5]  # tuple treats each layer differently (fine -> coarse)
+k_size_cross: [2, 2, 3, 3, 5,5]  # tuple treats each layer differently (fine -> coarse)
+k_size_sibling: [0, 3, 3, 3, 3,3]  # tuple treats each layer differently (fine -> coarse)
+wandb_disable: "False"
+check_val_every_n_epoch: 5
+max_epochs: 10000
+reg_order0_alpha: 0.0
+reg_order0_type: "l2"
+reg_order2_alpha: [50, 50, 25, 12, 6, 3]
+reg_order2_type: "l2"
+reg_consist_alpha: 0.0
+loss_function: "ncc"
+window_size: 9
+loss_type: "pixel"
+loss_weight: 1.0
+evaluation_metrics: ["disp_metrics", "image_metrics", "seg_metrics"]
+iters: [1,1,1,2,4,4]

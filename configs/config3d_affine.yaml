@@ -1,0 +1,35 @@
+# Inference configuration file
+dataset: "brain_camcan"  # brain_camcan, brain_camcan2d, nlst, mnist, rafd, oasis3d, oasis2d, abdominal
+intersubject: False
+with_affine: True
+with_deform: True
+angle: [0.392699, 0.392699, 0.392699]  # In radians
+scale: 0.0
+translation: 0.0
+batch_size: 1
+num_workers: 4
+att_nhead: 1
+inh_coord_interp_type: "bilinear"
+inh_feat_interp_type: "mha"
+inh_refinement: True
+global_bottleneck: False
+channels: [16, 32, 32, 64, 64, 128]
+pool_sizes: 2  # tuple treats each layer differently (fine -> coarse)
+k_size_inh: 0  # tuple treats each layer differently (fine -> coarse)
+k_size_parent: [2, 3, 3, 5, 5]  # tuple treats each layer differently (fine -> coarse)
+k_size_cross: [0, 2, 2, 3, 2,5]  # tuple treats each layer differently (fine -> coarse)
+k_size_sibling: 0  # tuple treats each layer differently (fine -> coarse)
+wandb_disable: "False"
+check_val_every_n_epoch: 10
+max_epochs: 10000
+reg_order0_alpha: 0.0
+reg_order0_type: "l2"
+reg_order2_alpha: 200.0
+reg_order2_type: "l2"
+reg_consist_alpha: 0.0
+loss_function: "ncc"
+window_size: 9
+loss_type: "pixel"
+loss_weight: 1.0
+evaluation_metrics: ["disp_metrics", "image_metrics", "seg_metrics"]
+iters: [1,1,1,1,1,1]

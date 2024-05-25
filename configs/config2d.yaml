@@ -1,0 +1,46 @@
+# Inference configuration file
+dataset: "brain_camcan2d"  # brain_camcan, brain_camcan2d, nlst, mnist, rafd, oasis3d, oasis2d, abdominal
+batch_size: 8
+num_workers: 4
+with_affine: True
+with_deform: False
+angle: [3.1415]  # In radians
+scale: 0.0
+translation: 0.
+intersubject: True
+att_nhead: 1
+inh_coord_interp_type: "bilinear"
+inh_feat_interp_type: "mha"
+inh_refinement: True
+global_bottleneck: True
+channels: [16, 32, 32, 64, 64, 128]
+pool_sizes: 2  # tuple treats each layer differently (fine -> coarse)
+k_size_inh: 0  # tuple treats each layer differently (fine -> coarse)
+k_size_parent: [2, 3, 3, 5, 5]  # tuple treats each layer differently (fine -> coarse)
+k_size_cross: [2, 2, 3, 3, 5,5]  # tuple treats each layer differently (fine -> coarse)
+k_size_sibling: 0  # tuple treats each layer differently (fine -> coarse)
+pos_econding: "cape"
+wandb_disable: "True"
+is_sweep: False
+gpu: 0
+lr: 0.0001
+dropout: 0.0
+check_val_every_n_epoch: 1
+intersubject: False
+max_epochs: 10000
+# Loss on each coarser resolution is compensated by its pooling factor
+reg_order0_alpha: 0.0  # tuple treats each layer differently (fine -> coarse)
+reg_order0_type: "l2"
+reg_order2_alpha: 600  # tuple treats each layer differently (fine -> coarse)
+reg_order2_type: "l2"
+reg_order2_detach: True
+reg_order2_from_start: True
+reg_consist_alpha: 0.0  # tuple treats each layer differently (fine -> coarse)
+loss_function: "ncc"
+window_size: 9
+loss_type: "pixel"
+loss_weight: 1.0  # tuple treats each layer differently (fine -> coarse)
+evaluation_metrics: ["disp_metrics", "image_metrics", "seg_metrics"]
+iters: 1   # tuple treats each layer differently (fine -> coarse)
+
+ckpt_path: 'path/to/checkpoint.pth'
