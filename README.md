@@ -1,15 +1,36 @@
 
-# Image registration is a geometric deep learning task
+# GeoReg: Image registration is a geometric deep learning task
 Welcome!
 
-This repository contains code for Image registration is a geometric deep learning task paper submitted to NeuRIPS 2024.
+This is the official repository for the NeurIPS 2024 paper submission: "Image registration is a geometric deep learning task"
+
+
+
 
 <img src="over.png" width="700">
+
+
+### GeoReg uses a Lagangrian framework to model deformations using geometric deep learning:
+
+- A dual encoder extracts features for Source and Target images independently. 
+- Each feature becomes a free-floating node with a coordinate in a joint Euclidean space.
+- Decoding is performed coarse-to-fine in a multi-resolution fashion without any intermediate resampling operations.
+
+
+### We perform graph operations in the continuous domain to:
+- (1) deform N times within a resolution using Source-Target attention.
+- (2) interpolate deformations across resolutions using child-parent attention.
+
+<img src="components.png" width="700">
 
 ## Qualitative results
 
 Result demonstrating how our method not can handle not only large roations but also deformble components in the image registration task.
+#### 45 degree rotations:
 <img src="Qualitative_results-Rotation.png" width="700">
+
+#### Half-image translations:
+<img src="Qualitative_results-Translation.png" width="700">
 
 ## Installation
 1. Clone this repository
